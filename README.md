@@ -4,11 +4,11 @@
 |Column                     |Type                   |Options                                     |
 |---------------------------|-----------------------|--------------------------------------------|
 |nick_name                  |string                 |null: false                                 |
-|email                      |string                 |null: false, , default: ""      |
-|encrypted_password         |string                 |null: false, default: ""                    |
+|email                      |string                 |null: false, , unique: true　　　　　　　     |
+|encrypted_password         |string                 |null: false, 　　　　　　　                   |
 |first_name                 |string                 |null: false,                                |
 |last_name                  |string                 |null: false,                                |
-|Katakana_first_name        |string                 |null: false,                                |
+|katakana_first_name        |string                 |null: false,                                |
 |katakana_last_name         |string                 |null: false,                                |
 |birth_day                  |date                   |null: false,                                |
 # Association
@@ -42,9 +42,11 @@ has_one: recipient
 # items
 |Column                     |Type                   |Options                                     |
 |product_name               |sting                  |null: false                                 |
+|product_detail             |text                   |null: false                                 |
 |product_category_id        |integer                |null: false                                 |
 |product_situation_id       |integer                |null: false                                 |
 |delivery_charge_id         |integer                |null: false                                 |
+|delivery_area              |integer                |null: false                                 |
 |delivery_day_id            |integer                |null: false                                 |
 |price                      |integer                |null: false                                 |
 |user                       |references             |null: false, foreign_key: true              |
