@@ -46,7 +46,7 @@ has_one: recipient
 |product_category_id        |integer                |null: false                                 |
 |product_situation_id       |integer                |null: false                                 |
 |delivery_charge_id         |integer                |null: false                                 |
-|delivery_area              |integer                |null: false                                 |
+|delivery_area_id           |integer                |null: false                                 |
 |delivery_day_id            |integer                |null: false                                 |
 |price                      |integer                |null: false                                 |
 |user                       |references             |null: false, foreign_key: true              |
