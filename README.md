@@ -4,13 +4,13 @@
 |Column                     |Type                   |Options                                     |
 |---------------------------|-----------------------|--------------------------------------------|
 |nick_name                  |string                 |null: false                                 |
-|email                      |string                 |null: false, , unique: true　　　　　　　     |
-|encrypted_password         |string                 |null: false, 　　　　　　　                   |
-|first_name                 |string                 |null: false,                                |
-|last_name                  |string                 |null: false,                                |
-|katakana_first_name        |string                 |null: false,                                |
-|katakana_last_name         |string                 |null: false,                                |
-|birth_day                  |date                   |null: false,                                |
+|email                      |string                 |null: false,  unique: true　　　　　　　     |
+|encrypted_password         |string                 |null: false　　　　　　　                   |
+|first_name                 |string                 |null: false                                |
+|last_name                  |string                 |null: false                                |
+|katakana_first_name        |string                 |null: false                                |
+|katakana_last_name         |string                 |null: false                                |
+|birth_day                  |date                   |null: false                                |
 # Association
 has_many: items
 has_many: orders
@@ -19,7 +19,7 @@ has_many: orders
 # recipients
 |Column                     |Type                   |Options                                     |
 |post_code                  |string                 |null: false                                 |
-|prefecture_id              |integer                |null: false                                 |
+|delivery_area_id           |integer                |null: false                                 |
 |municipality               |string                 |null: false                                 |
 |street_address             |string                 |null: false                                 |
 |building_name              |string                 |                                            |
