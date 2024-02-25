@@ -6,6 +6,13 @@ RSpec.describe User, type: :model do
   end
 
   describe 'バリデーション' do
+
+    context '新規登録ができる時' do
+      it '正しい情報が入力されている場合は登録できる' do
+        expect(@user).to be_valid
+      end
+    end
+    
     context '新規登録ができない時' do
       it 'ニックネームが空の場合は登録できない' do
         @user.nick_name = nil
@@ -46,12 +53,24 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードが半角英数字混合でない場合は登録できない' do
-        @user.password = 'password' # このパスワードは半角英数字混合でない
+        # 半角英字のみのパスワード
+        @user.password = 'password'
         @user.password_confirmation = 'password'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid" # メッセージを"Password is invalid"に変更
-      end
+        expect(@user.errors.full_messages).to include "Password is invalid"
+        
+        # 半角数字のみのパスワード
+        @user.password = '123456'
+        @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
       
+        # 全角文字を含むパスワード
+        @user.password = 'パスワード123'
+        @user.password_confirmation = 'パスワード123'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
+      end
 
       it 'パスワードとパスワード（確認）が一致しない場合は登録できない' do
         @user.password_confirmation = 'mismatch_password'
