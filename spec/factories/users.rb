@@ -8,7 +8,7 @@ FactoryBot.define do
       Faker::Internet.email.sub('@', "#{n}@")
     end
 
-    password { Faker::Internet.password(min_length: 8) }
+    password { Faker::Internet.password(min_length: 8, mix_case: true, special_characters: false) }
     password_confirmation { password }
     first_name { '山田' }
     last_name { '太郎' }
