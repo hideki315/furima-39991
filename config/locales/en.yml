@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+en:
+  faker:
+    team:
+      product_name: "Translated product name"
