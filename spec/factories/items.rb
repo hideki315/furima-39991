@@ -7,8 +7,7 @@ FactoryBot.define do
     delivery_charge_id { Faker::Number.between(from: 2, to: 3) }
     delivery_area_id { Faker::Number.between(from: 2, to: 47) }
     delivery_day_id { Faker::Number.between(from: 2, to: 3) }
-    price { Faker::Commerce.price(range: 100..100000) }
-    association :user
+    price { Faker::Number.decimal(l_digits: 4, r_digits: 2).to_i }
 
     transient do
       with_image { true }

@@ -39,17 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_27_141909) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "areas", charset: "utf8", force: :cascade do |t|
+  create_table "delivery_areas", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "charges", charset: "utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "delivery_days", charset: "utf8", force: :cascade do |t|
+  create_table "delivery_charges", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_27_141909) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "situations", charset: "utf8", force: :cascade do |t|
+  create_table "product_situation", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -13,6 +13,4 @@ class CreateItems < ActiveRecord::Migration[7.0]
         t.timestamps
     end
   end
-  include ActiveHash::Associations
-  has_many :item
 end

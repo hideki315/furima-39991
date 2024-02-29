@@ -1,13 +1,11 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
+  def index
+  end
+
   def new
     @item = Item.new
-    @product_categories = ProductCategory.all
-    @product_situations = ProductSituation.all
-    @delivery_charges = DeliveryCharge.all
-    @delivery_areas = DeliveryArea.all
-    @delivery_days = DeliveryDay.all
   end
 
   def create
