@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user: @user)
   end
 
   describe '商品の投稿' do
@@ -50,7 +51,17 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が範囲外の場合は保存できない' do
+        @item.price = 299
+        expect(@item).to_not be_valid
         @item.price = 10_000_000
+        expect(@item).to_not be_valid
+      end
+
+      it '価格が半角数字以外の場合は保存できない' do
+        @item.price = '１０００'
+        expect(@item).to_not be_valid
+
+        @item.price = 'abc'
         expect(@item).to_not be_valid
       end
     end

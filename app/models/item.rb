@@ -6,16 +6,18 @@ class Item < ApplicationRecord
   belongs_to :delivery_area
   belongs_to :delivery_day
   has_one_attached :image
+  belongs_to :user
 
   validate :image_attached
   validates :product_name, presence: true
   validates :product_detail, presence: true
-  validates :product_category_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :product_situation_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :delivery_charge_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :delivery_area_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :delivery_day_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true
+  validates :product_category_id, numericality: { only_integer: true, other_than: 1, message: "can't be blank" }
+  validates :product_situation_id, numericality: { only_integer: true, other_than: 1, message: "can't be blank" }
+  validates :delivery_charge_id, numericality: { only_integer: true, other_than: 1, message: "can't be blank" }
+  validates :delivery_area_id, numericality: { only_integer: true, other_than: 1, message: "can't be blank" }
+  validates :delivery_day_id, numericality: { only_integer: true, other_than: 1, message: "can't be blank" }
+
+  validates :price, presence: true, format: { with: /\A[0-9]+\z/ }
   validate :price_within_range
 
   def user=(user)
