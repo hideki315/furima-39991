@@ -24,12 +24,12 @@ class Item < ApplicationRecord
     self.user_id = nil unless user.present?
   end
 
-  def sold_out?
+  # def sold_out?
     # アイテムの在庫状況をチェックするロジックを実装する
     # 例えば、在庫数が0の場合に売り切れと判断するなど
     # この例では、単純にpriceが0以下の場合に売り切れとする
-    price <= 0
-  end
+    # price <= 0
+  # end
 
   private
 
