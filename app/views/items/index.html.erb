@@ -122,13 +122,13 @@
 <% @items.each do |item| %>
   <% if item.image.attached? %>
     <li class='list'>
-      <%= link_to "#" do %>
+      <%= link_to item_path(item) do %>
         <div class='item-img-content'>
         <%= image_tag item.image, class: 'item-img' if item.image.attached? %>
           <%# if item.sold_out? %>
-            <div class='sold-out'>
+            <!--<div class='sold-out'>
               <span>Sold Out!!</span>
-            </div>
+            </div>-->
           <%# end %>
         </div>
         <div class='item-info'>
