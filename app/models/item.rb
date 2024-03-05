@@ -24,9 +24,9 @@ class Item < ApplicationRecord
     self.user_id = nil unless user.present?
   end
 
-  # def sold_out?
-    # price <= 0
-  # end
+  #def sold_out?
+    #price <= 0
+  #end
 
   private
 
