@@ -19,14 +19,16 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validate :price_within_range
 
+  validates :sold_out, inclusion: { in: [true, false] } 
+  
   def user=(user)
     self.user_id = user.id if user.present?
     self.user_id = nil unless user.present?
   end
 
-  #def sold_out?
-    #price <= 0
-  #end
+  def sold_out?
+    Order.exists?(item_id: id)
+  end
 
   private
 
