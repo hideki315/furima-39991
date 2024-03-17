@@ -23,13 +23,13 @@ class ItemsController < ApplicationController
     if user_signed_in?
       if current_user == @item.user
         @show_edit_and_delete_buttons = true
-      elsif @item.sold_out?
+      elsif Order.exists?(item_id: @item.id)
         @hide_buttons = true
       else
         @hide_purchase_button = true
       end
     else
-      @hide_purchase_button = true if @item.sold_out?
+      @hide_purchase_button = true if Order.exists?(item_id: @item.id)
     end
   end
   

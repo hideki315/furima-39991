@@ -7,7 +7,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
   has_one_attached :image
   belongs_to :user
-  has_many :orders, dependent: :destroy
 
   validate :image_attached
   validates :product_name, presence: true
@@ -28,7 +27,7 @@ class Item < ApplicationRecord
   end
 
   def sold_out?
-    sold_out
+    Order.exists?(item_id: id)
   end
 
   private

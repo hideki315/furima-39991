@@ -11,7 +11,6 @@ class OrderForm
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :municipality
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }, length: { minimum: 10, maximum: 11 }, allow_blank: false
-    validates :building_name, allow_blank: true
   end
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
