@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
         @hide_purchase_button = true
       end
     else
-      @hide_purchase_button = true if @item.orders.exists?
+      @hide_purchase_button = true if Order.exists?(item_id: @item.id)
     end
   end
 
