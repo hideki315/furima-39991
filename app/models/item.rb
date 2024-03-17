@@ -27,7 +27,7 @@ class Item < ApplicationRecord
   end
 
   def sold_out?
-    Order.exists?(item_id: id)
+  orders.exists?
   end
 
   private
