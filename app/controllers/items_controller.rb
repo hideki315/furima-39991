@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy, :show]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,10 +20,21 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      if current_user == @item.user
+        @show_edit_and_delete_buttons = true
+      elsif @item.sold_out?
+        @hide_buttons = true
+      else
+        @hide_purchase_button = true
+      end
+    else
+      @hide_purchase_button = true if @item.sold_out?
+    end
   end
-
+  
   def edit
-    if current_user == @item.user
+    if current_user == @item.user && !@item.sold_out?
       render :edit
     else
       redirect_to root_path
@@ -39,14 +50,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if current_user == @item.user
-      @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    @item.destroy if current_user == @item.user
+    redirect_to root_path
   end
-  
+
   private
 
   def item_params
