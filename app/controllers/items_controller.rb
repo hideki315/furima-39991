@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
       @hide_purchase_button = true if Order.exists?(item_id: @item.id)
     end
   end
-  
+
   def edit
     if current_user == @item.user && !@item.sold_out?
       render :edit
