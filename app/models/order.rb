@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :item
-  has_one :recipient, dependent: :destroy
+  has_one :recipient
 
   after_create :update_item_sold_out_flag
 
