@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy, :show]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -29,9 +29,10 @@ class ItemsController < ApplicationController
         @hide_purchase_button = true
       end
     else
-      @hide_purchase_button = true if Order.exists?(item_id: @item.id)
+      @hide_buttons = true
     end
   end
+
 
   def edit
     if current_user == @item.user && !@item.sold_out?
